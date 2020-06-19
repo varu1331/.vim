@@ -9,9 +9,10 @@ syntax enable "adds syntax highlighting
 "spaces and tabs
 set tabstop=4 "number of visual spaces per tab
 set softtabstop=4 "number of spaces in tab when editing
+set shiftwidth=4 "sets default indent size
 set expandtab "makes tabs into spaces
-set autoindent "turns it on
-set smartindent "does the right thing (mostly) in programs
+set autoindent "turns auto indenting of
+set smartindent "indents smartly based on file?
 
 "tab for autocompletion
 function! InsertTabWrapper()
@@ -45,11 +46,12 @@ set foldenable "enable folding
 
 "determines backup, swp, and undo settings
 set nobackup
-set backupdir=~/.vim/.backup//
+set nowritebackup
+"set backupdir=~/.vim/.backup//
 set noundofile
-set undodir=~/.vim/.undo//
+"set undodir=~/.vim/.undo//
 set noswapfile
-set directory=~/.vim/.swap//
+"set directory=~/.vim/.swap//
 
 "plugins
 call plug#begin('~/.vim/plugged')
