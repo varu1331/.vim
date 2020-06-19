@@ -1,3 +1,6 @@
+"set nocompatible is commmon for vim
+set nocompatible
+
 "colors
 let base16colorspace=256
 colorscheme base16-eighties
@@ -9,6 +12,18 @@ set softtabstop=4 "number of spaces in tab when editing
 set expandtab "makes tabs into spaces
 set autoindent "turns it on
 set smartindent "does the right thing (mostly) in programs
+
+"tab for autocompletion
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
 
 "ui configuration
 set relativenumber "shows relative line numbers
@@ -28,15 +43,13 @@ set hlsearch "highlights matches
 "folding
 set foldenable "enable folding
 
-"determines backup settings
-if has("vms")
-    set nobackup
-else 
-     set backup
-     if has('persistent_undo')
-        set undofile
-     endif
-endif
+"determines backup, swp, and undo settings
+set nobackup
+set backupdir=~/.vim/.backup//
+set noundofile
+set undodir=~/.vim/.undo//
+set noswapfile
+set directory=~/.vim/.swap//
 
 "plugins
 call plug#begin('~/.vim/plugged')

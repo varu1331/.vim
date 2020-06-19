@@ -1,4 +1,9 @@
+#FILES
 .netrwhist
-*~
+
+#FOLDERS
 plugged/
 colors/
+.backup/
+.swap/
+.undo/
