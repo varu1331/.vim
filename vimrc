@@ -68,3 +68,5 @@ nnoremap <leader>j 10j
 nnoremap <leader>k 10k
 nnoremap <leader>h ^
 nnoremap <leader>l $
+inoremap jk <esc>
+nnoremap <leader>g G
