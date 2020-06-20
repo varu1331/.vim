@@ -63,13 +63,37 @@ Plug 'https://tpope.io/vim/commentary.git'
 
 call plug#end()
 
-"mappings
+"MAPPINGS
+
+"sets mapleader to be used on custom commands
 let mapleader = " " 
-nnoremap <leader>j 10j
-nnoremap <leader>k 10k
-nnoremap <leader>h ^
-nnoremap <leader>l $
-inoremap jk <esc>
-nnoremap <leader>g G
-nnoremap <tab> >>
-nnoremap <S-tab> <<
+
+"move down by 10
+nnoremap <leader>j 10j 
+
+"move up by 10
+nnoremap <leader>k 10k 
+
+"move to the begining of text on a line
+nnoremap <leader>h ^ 
+
+"move to the end of text on a line
+nnoremap <leader>l $ 
+
+"add jk as a quick escape from insert mode  
+inoremap jk <esc> 
+
+"jump to end of file withou having to use capital letter
+nnoremap <leader>g G 
+
+"makes tab indent right in normal mode
+nnoremap <tab> >> 
+
+"makes shift tab indent remove indent in normal mode
+nnoremap <S-tab> << 
+
+"allows for a new line to be add below cursor line
+nnoremap <c-n> @="m'o\eg''"<cr>
+
+"allows for new line to be added above cursor line
+nnoremap <c-p> @="m'O\eg''"<cr>
