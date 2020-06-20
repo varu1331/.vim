@@ -7,9 +7,10 @@ colorscheme base16-eighties
 syntax enable "adds syntax highlighting
 
 "spaces and tabs
-set tabstop=4 "number of visual spaces per tab
-set softtabstop=4 "number of spaces in tab when editing
-set shiftwidth=4 "sets default indent size
+let indent=4 "number of spaces to indent
+let &tabstop=indent "number of visual spaces per tab
+let &softtabstop=indent "number of spaces in tab when editing
+let &shiftwidth=indent "sets default indent size
 set expandtab "makes tabs into spaces
 set autoindent "turns auto indenting of
 set smartindent "indents smartly based on file?
@@ -70,3 +71,5 @@ nnoremap <leader>h ^
 nnoremap <leader>l $
 inoremap jk <esc>
 nnoremap <leader>g G
+nnoremap <tab> >>
+nnoremap <S-tab> <<
