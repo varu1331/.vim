@@ -64,8 +64,15 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/jiangmiao/auto-pairs' 
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'https://tpope.io/vim/commentary.git'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"nerdtree commenter
+"conquer of completion?
 
 call plug#end()
+
+"EXTERNAL SOURCES
+source $HOME/.vim/plug-config/coc.vim
 
 "MAPPINGS
 "sets mapleader to be used on custom commands
