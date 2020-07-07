@@ -16,16 +16,16 @@ set autoindent "turns auto indenting of
 set smartindent "indents smartly based on file?
 
 "TAB AUTOCOMPLETION
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
+"function! InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-p>"
+"    endif
+"endfunction
+"inoremap <expr> <tab> InsertTabWrapper()
+"inoremap <s-tab> <c-n>
 
 "UI CONFIGURATION
 set relativenumber "shows relative line numbers
@@ -45,11 +45,12 @@ set list
 "SEARCHING
 set incsearch "searches as characters are entered
 set hlsearch "highlights matches 
+set smartcase "searches case sensitive only when a capital letter is entered
 
 "FOLDING
 set foldenable "enable folding
 
-"BACKUP, UNDOW, and SWAP
+"BACKUP, UNDO, and SWAP
 set nobackup
 set nowritebackup
 "set backupdir=~/.vim/.backup//
@@ -65,6 +66,8 @@ Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:polyglot_disabled = ['python-indent']
+Plug 'sheerun/vim-polyglot'
 
 "nerdtree commenter
 "conquer of completion?
@@ -73,6 +76,7 @@ call plug#end()
 
 "EXTERNAL SOURCES
 source $HOME/.vim/plug-config/coc.vim
+source $HOME/.vim/plug-config/polyglot.vim
 
 "MAPPINGS
 "sets mapleader to be used on custom commands
@@ -93,7 +97,7 @@ nnoremap <leader>l $
 "add jk as a quick escape from insert mode  
 inoremap jk <esc>
 
-"jump to end of file withou having to use capital letter
+"jump to end of file without having to use capital letter
 nnoremap <leader>g G
 
 "makes tab indent right in normal mode
