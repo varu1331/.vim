@@ -59,6 +59,9 @@ set noundofile
 set noswapfile
 "set directory=~/.vim/.swap//
 
+"MACROS
+set lazyredraw "prevents vim from redrawing screen on every macro step
+
 "PLUGINS
 call plug#begin('~/.vim/plugged')
 
@@ -107,7 +110,15 @@ nnoremap <tab> >>
 nnoremap <S-tab> <<
 
 "allows for a new line to be add below cursor line
-nnoremap <c-n> @="m'o\eg''"<cr>
+"nnoremap <c-n> @="m'o\eg''"<cr>
+nnoremap <leader>o moo<Esc>`o
 
 "allows for new line to be added above cursor line
-nnoremap <c-p> @="m'O\eg''"<cr>
+"nnoremap <c-p> @="m'O\eg''"<cr>
+nnoremap <leader>O moO<Esc>`o
+
+"allows for easier execution of last used macro
+nnoremap Q @@
+
+"remove ctrl w from window mappings
+nnoremap <Leader>w <c-w>
