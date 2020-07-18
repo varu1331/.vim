@@ -2,8 +2,17 @@
 set nocompatible
 
 "COLORS
-let base16colorspace=256
-colorscheme base16-eighties
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+
+    "custom statusline colors
+    autocmd ColorScheme * highlight NormalMode ctermbg=019 ctermfg=012
+    autocmd ColorScheme * highlight InsertMode ctermbg=019 ctermfg=010
+    autocmd ColorScheme * highlight ReplaceMode ctermbg=019 ctermfg=009
+    autocmd ColorScheme * highlight VisualMode ctermbg=019 ctermfg=016
+    autocmd ColorScheme * highlight CommandMode ctermbg=019 ctermfg=015
+endif
 syntax enable "adds syntax highlighting
 
 "SPACES AND TABS 
@@ -31,12 +40,63 @@ set smartindent "indents smartly based on file?
 set relativenumber "shows relative line numbers
 set number "shows line number
 set showcmd "puts last used command in bottom right
-set ruler "adds ruler to bottom of screen
+"set ruler "adds ruler to bottom of screen
 filetype indent on "loads specific indent files based on filetype NOT CONFIGURED YET
 set wildmenu "visual autocomplete for command menu
 set showmatch "highlights matching [{()}]
 set nowrap "do not automatically wrap on load
 set formatoptions-=t "do not automatically wrap text when typing
+set noshowmode "doesn't show mode in command line
+
+"STATUSLINE
+set laststatus=2
+set statusline=
+set statusline+=\ %n "buffer number
+set statusline+=%#NormalMode#%{(mode()=='n')?'\ NORMAL\ ':''} "display mode normal
+set statusline+=%#InsertMode#%{(mode()=='i')?'\ INSERT\ ':''} "display mode normal
+set statusline+=%#VisualMode#%{(mode()=='v')?'\ VISUAL\ ':''} "display mode normal
+set statusline+=%#ReplaceMode#%{(mode()=='R')?'\ REPLACE\ ':''} "display mode normal
+"set statusline+=%#StatusLine#%{StatuslineGit()}
+set statusline+=%#StatusLine#\%t "tail of the filename
+set statusline+=%m "modified flag
+set statusline+=%r "read only flag
+set statusline+=%y "filetype
+set statusline+=%= "left/right separator
+set statusline+=\ [%{strlen(&fenc)?&fenc:'none'}, "file encoding
+set statusline+=%{&ff}]\  "file format
+set statusline+=%c\  "cursor column
+set statusline+=%l/%L\  "cursor line/total lines
+set statusline+=\ %{strftime(\"%H:%M\")} "time
+
+"function! StatuslineMode()
+"  let l:mode=mode()
+"  if l:mode==#"n"
+"    return "NORMAL"
+"  elseif l:mode==#"v"
+"    return "VISUAL"
+"  elseif l:mode==#"i"
+"    return "INSERT"
+"  elseif l:mode==#"R"
+"    return "REPLACE"
+"  elseif l:mode==?"s"
+"    return "SELECT"
+"  elseif l:mode==#"t"
+"    return "TERMINAL"
+"  elseif l:mode==#"c"
+"    return "COMMAND"
+"  elseif l:mode==#"!"
+"    return "SHELL"
+"  endif
+"endfunction
+
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?' '.l:branchname.' ':''
+endfunction
 
 "LIST CHARS
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
