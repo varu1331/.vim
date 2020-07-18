@@ -57,7 +57,7 @@ set statusline+=%#InsertMode#%{(mode()=='i')?'\ INSERT\ ':''} "display mode norm
 set statusline+=%#VisualMode#%{(mode()=='v')?'\ VISUAL\ ':''} "display mode normal
 set statusline+=%#ReplaceMode#%{(mode()=='R')?'\ REPLACE\ ':''} "display mode normal
 "set statusline+=%#StatusLine#%{StatuslineGit()}
-set statusline+=%#StatusLine#\%t "tail of the filename
+set statusline+=%#StatusLine#%t\  "tail of the filename
 set statusline+=%m "modified flag
 set statusline+=%r "read only flag
 set statusline+=%y "filetype
@@ -68,26 +68,26 @@ set statusline+=%c\  "cursor column
 set statusline+=%l/%L\  "cursor line/total lines
 set statusline+=\ %{strftime(\"%H:%M\")} "time
 
-"function! StatuslineMode()
-"  let l:mode=mode()
-"  if l:mode==#"n"
-"    return "NORMAL"
-"  elseif l:mode==#"v"
-"    return "VISUAL"
-"  elseif l:mode==#"i"
-"    return "INSERT"
-"  elseif l:mode==#"R"
-"    return "REPLACE"
-"  elseif l:mode==?"s"
-"    return "SELECT"
-"  elseif l:mode==#"t"
-"    return "TERMINAL"
-"  elseif l:mode==#"c"
-"    return "COMMAND"
-"  elseif l:mode==#"!"
-"    return "SHELL"
-"  endif
-"endfunction
+function! StatuslineMode()
+  let l:mode=mode()
+  if l:mode==#"n"
+    return "NORMAL"
+  elseif l:mode==#"v"
+    return "VISUAL"
+  elseif l:mode==#"i"
+    return "INSERT"
+  elseif l:mode==#"R"
+    return "REPLACE"
+  elseif l:mode==?"s"
+    return "SELECT"
+  elseif l:mode==#"t"
+    return "TERMINAL"
+  elseif l:mode==#"c"
+    return "COMMAND"
+  elseif l:mode==#"!"
+    return "SHELL"
+  endif
+endfunction
 
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
