@@ -50,12 +50,13 @@ set noshowmode "doesn't show mode in command line
 
 "STATUSLINE
 set laststatus=2
-set statusline=
+set statusline=%#StatusLine#
 set statusline+=\ %n "buffer number
 set statusline+=%#NormalMode#%{(mode()=='n')?'\ NORMAL\ ':''} "display mode normal
-set statusline+=%#InsertMode#%{(mode()=='i')?'\ INSERT\ ':''} "display mode normal
-set statusline+=%#VisualMode#%{(mode()=='v')?'\ VISUAL\ ':''} "display mode normal
-set statusline+=%#ReplaceMode#%{(mode()=='R')?'\ REPLACE\ ':''} "display mode normal
+set statusline+=%#InsertMode#%{(mode()=='i')?'\ INSERT\ ':''} "display mode insert
+set statusline+=%#VisualMode#%{(mode()=='v')?'\ VISUAL\ ':''} "display mode visual
+set statusline+=%#ReplaceMode#%{(mode()=='R')?'\ REPLACE\ ':''} "display mode replace
+set statusline+=%#CommandMode#%{(mode()=='c')?'\ COMMAND\ ':''} "display mode command
 "set statusline+=%#StatusLine#%{StatuslineGit()}
 set statusline+=%#StatusLine#%t\  "tail of the filename
 set statusline+=%m "modified flag
@@ -158,7 +159,7 @@ nnoremap <leader>h ^
 nnoremap <leader>l $
 
 "add jk as a quick escape from insert mode  
-inoremap jk <esc>
+inoremap jk <esc>l
 
 "jump to end of file without having to use capital letter
 nnoremap <leader>g G
@@ -182,3 +183,9 @@ nnoremap Q @@
 
 "remove ctrl w from window mappings
 nnoremap <Leader>w <c-w>
+
+"use reverse f (F) without using capital letter
+nnoremap <Leader>f F
+
+"use reverse t (T) without using capital letter
+nnoremap <Leader>t T
