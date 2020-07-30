@@ -9,4 +9,4 @@ plug-config/
 colors/
 .backup/
 .swap/
-.undo/
+.undos/
