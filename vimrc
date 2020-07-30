@@ -90,10 +90,12 @@ function! StatuslineMode()
   endif
 endfunction
 
+"not currently being used
 function! GitBranch()
   return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
+"not currently being used
 function! StatuslineGit()
   let l:branchname = GitBranch()
   return strlen(l:branchname) > 0?' '.l:branchname.' ':''
@@ -115,8 +117,17 @@ set foldenable "enable folding
 set nobackup
 set nowritebackup
 "set backupdir=~/.vim/.backup//
-set noundofile
-"set undodir=~/.vim/.undo//
+"setup persistent_undo
+if has('persistent_undo')
+    let undoPath = expand("~/.vim/.undos")
+
+    if !isdirectory(undoPath)
+        call mkdir(undoPath, "p")
+    endif
+
+    let &undodir = undoPath
+    set undofile
+endif
 set noswapfile
 "set directory=~/.vim/.swap//
 
@@ -134,7 +145,6 @@ let g:polyglot_disabled = ['python-indent']
 Plug 'sheerun/vim-polyglot'
 
 "nerdtree commenter
-"conquer of completion?
 
 call plug#end()
 
