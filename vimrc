@@ -108,7 +108,6 @@ set list
 "SEARCHING
 set incsearch "searches as characters are entered
 set hlsearch "highlights matches 
-set smartcase "searches case sensitive only when a capital letter is entered
 
 "FOLDING
 set foldenable "enable folding
