@@ -41,11 +41,12 @@ set relativenumber "shows relative line numbers
 set number "shows line number
 set showcmd "puts last used command in bottom right
 "set ruler "adds ruler to bottom of screen
-filetype indent on "loads specific indent files based on filetype NOT CONFIGURED YET
+"filetype indent on "loads specific indent files based on filetype NOT CONFIGURED YET
 set wildmenu "visual autocomplete for command menu
 set showmatch "highlights matching [{()}]
 set nowrap "do not automatically wrap on load
 set formatoptions-=t "do not automatically wrap text when typing
+set formatoptions-=o "do not automatically insert current comment leader after using o or O
 set noshowmode "doesn't show mode in command line
 
 "STATUSLINE
@@ -155,13 +156,11 @@ source $HOME/.vim/plug-config/polyglot.vim
 "sets mapleader to be used on custom commands
 let mapleader=" "
 
-"move down by 10
+"move down and up by 10
 nnoremap <leader>j 10j
-
-"move up by 10
 nnoremap <leader>k 10k
 
-"move to the begining of text on a line
+"move to the begining of TEXT on a line
 nnoremap <leader>h ^
 
 "move to the end of text on a line
@@ -195,6 +194,11 @@ nnoremap <Leader>w <c-w>
 
 "use reverse f (F) without using capital letter
 nnoremap <Leader>f F
+onoremap <Leader>f F
 
 "use reverse t (T) without using capital letter
 nnoremap <Leader>t T
+onoremap <Leader>t T
+
+"quick :nohl
+nnoremap <Leader>nhl :nohl<C-M>
