@@ -1,11 +1,9 @@
 #FILES
 .netrwhist
 test
-coc-settings.json
 
 #FOLDERS
 plugged/
-plug-config/
 colors/
 .backup/
 .swap/
