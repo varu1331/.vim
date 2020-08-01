@@ -141,6 +141,7 @@ Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'chriskempson/base16-vim'
 let g:polyglot_disabled = ['python-indent']
 Plug 'sheerun/vim-polyglot'
 
