@@ -148,6 +148,10 @@ Plug 'sheerun/vim-polyglot'
 "nerdtree commenter
 
 call plug#end()
+autocmd VimEnter *
+    \ if len(filer(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \| PlugInstall -sync | q
+    \|endif
 
 "EXTERNAL SOURCES
 source $HOME/.vim/plug-config/coc.vim
