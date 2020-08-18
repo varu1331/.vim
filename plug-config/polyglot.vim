@@ -1,2 +1,0 @@
-"syntax highlighting settings
-"let g:python_highlight_all = 1
