@@ -15,26 +15,21 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 syntax enable "adds syntax highlighting
 
-"SPACES AND TABS 
+"SPACES, TABS, and BACKSPACE
 let indent=4 "number of spaces to indent
 let &tabstop=indent "number of visual spaces per tab
 let &softtabstop=indent "number of spaces in tab when editing
 let &shiftwidth=indent "sets default indent size
+set backspace=indent,eol,start
 set expandtab "makes tabs into spaces
-set autoindent "turns auto indenting of
+set autoindent "turns auto indenting on
 set smartindent "indents smartly based on file?
 
-"TAB AUTOCOMPLETION
-"function! InsertTabWrapper()
-"    let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<tab>"
-"    else
-"        return "\<c-p>"
-"    endif
-"endfunction
-"inoremap <expr> <tab> InsertTabWrapper()
-"inoremap <s-tab> <c-n>
+"FILETYPES
+filetype on
+filetype plugin on
+filetype indent on
+filetype plugin indent on
 
 "UI CONFIGURATION
 set relativenumber "shows relative line numbers
@@ -69,38 +64,6 @@ set statusline+=%{&ff}]\  "file format
 set statusline+=%c\  "cursor column
 set statusline+=%l/%L\  "cursor line/total lines
 set statusline+=\ %{strftime(\"%H:%M\")} "time
-
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#"n"
-    return "NORMAL"
-  elseif l:mode==#"v"
-    return "VISUAL"
-  elseif l:mode==#"i"
-    return "INSERT"
-  elseif l:mode==#"R"
-    return "REPLACE"
-  elseif l:mode==?"s"
-    return "SELECT"
-  elseif l:mode==#"t"
-    return "TERMINAL"
-  elseif l:mode==#"c"
-    return "COMMAND"
-  elseif l:mode==#"!"
-    return "SHELL"
-  endif
-endfunction
-
-"not currently being used
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-"not currently being used
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?' '.l:branchname.' ':''
-endfunction
 
 "LIST CHARS
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -153,9 +116,9 @@ autocmd VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
-"EXTERNAL SOURCES
-source $HOME/.vim/plug-config/coc.vim
-source $HOME/.vim/plug-config/polyglot.vim
+"EXTERNAL CONFIGURATION
+source $HOME/.vim/pluginConfig/coc.vim
+source $HOME/.vim/pluginConfig/polyglot.vim
 
 "MAPPINGS
 "sets mapleader to be used on custom commands
@@ -171,8 +134,9 @@ nnoremap <leader>h ^
 "move to the end of text on a line
 nnoremap <leader>l $
 
-"add jk as a quick escape from insert mode  
+"add jk as a quick escape from insert mode
 inoremap jk <esc>l
+inoremap JK <esc>l
 
 "jump to end of file without having to use capital letter
 nnoremap <leader>g G
@@ -195,15 +159,26 @@ nnoremap <leader>O moO<Esc>`o
 nnoremap Q @@
 
 "remove ctrl w from window mappings
-nnoremap <Leader>w <c-w>
+nnoremap <leader>w <c-w>
 
 "use reverse f (F) without using capital letter
-nnoremap <Leader>f F
-onoremap <Leader>f F
+nnoremap <leader>f F
+onoremap <leader>f F
 
 "use reverse t (T) without using capital letter
-nnoremap <Leader>t T
-onoremap <Leader>t T
+nnoremap <leader>t T
+onoremap <leader>t T
 
-"quick :nohl
-nnoremap <Leader>nhl :nohl<C-M>
+"change split sizes
+nnoremap <S-Up> <C-w>+
+nnoremap <S-Down> <C-w>-
+nnoremap <S-Left> <C-w><
+nnoremap <S-Right> <C-w>>
+
+"quick buffer movement
+nnoremap <F7> :buffers<C-M>:b
+nnoremap <leader>p :bp<C-M>
+nnoremap <leader>n :bn<C-M>
+
+"quick mark movement
+nnoremap <leader>' `
